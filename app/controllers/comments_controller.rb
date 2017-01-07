@@ -1,6 +1,43 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
 
+  swagger_controller :comments, 'Comments'
+
+  swagger_api :index do
+    summary 'Returns all comments'
+    notes 'The list of all comments'
+    response :not_acceptable
+  end
+
+  swagger_api :show do
+    summary 'Returns the comment'
+    notes 'Show the comment'
+    param :path, :id, :integer, :required, 'Id of the comment to show'
+    response :not_acceptable
+  end
+
+  swagger_api :create do
+    summary 'Create the comment'
+    notes 'Create a comment'
+    param :body, :comment, :string, :required, '', { "username": "" }
+    response :not_acceptable
+  end
+
+  swagger_api :update do
+    summary 'Update the comment'
+    notes 'Update a comment'
+    param :path, :id, :integer, :required, 'Id of the comment to update'
+    param :body, :comment, :string, :required, '', { "username": "" }
+    response :not_acceptable
+  end
+
+  swagger_api :destroy do
+    summary 'Delete the comment'
+    notes 'Delete a comment'
+    param :path, :id, :integer, :required, 'Id of the comment to delete'
+    response :not_acceptable
+  end
+
   # GET /comments
   def index
     @comments = Comment.all
@@ -46,6 +83,6 @@ class CommentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def comment_params
-      params.require(:comment).permit(:username, :email, :string, :content, :created_at)
+      params.require(:comment).permit(:username, :email, :content, :created_at)
     end
 end
