@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/drioemgaoin/RubyCommentApi.svg?branch=master)](https://travis-ci.org/drioemgaoin/RubyCommentApi)
+[![Build Status](https://travis-ci.org/drioemgaoin/RubyCommentApi.svg?branch=master)](https://travis-ci.org/drioemgaoin/RubyCommentApi) [![Code Climate](https://codeclimate.com/github/drioemgaoin/RubyCommentApi/badges/gpa.svg)](https://codeclimate.com/github/drioemgaoin/RubyCommentApi)
 
 # README
 
