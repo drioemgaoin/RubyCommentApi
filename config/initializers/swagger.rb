@@ -14,7 +14,7 @@ Swagger::Docs::Config.register_apis({
 })
 
 class Swagger::Docs::Config
-  def self.transform_path(path, api_version)
+  def self.transform_path(path, _api_version)
     "apidocs/#{path}"
   end
 end
