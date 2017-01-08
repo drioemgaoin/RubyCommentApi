@@ -1,57 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
 
-  # include Swagger::Blocks
-  #
-  # swagger_path '/comments' do
-  #   operation :get do
-  #     key :description, 'Returns all comments from the system'
-  #     key :operationId, 'getComments'
-  #     key :produces, [
-  #       'application/json',
-  #       'text/html',
-  #     ]
-  #     key :tags, [
-  #       'comment'
-  #     ]
-  #     parameter do
-  #       key :name, :tags
-  #       key :in, :query
-  #       key :description, 'tags to filter by'
-  #       key :required, false
-  #       key :type, :array
-  #       items do
-  #         key :type, :string
-  #       end
-  #       key :collectionFormat, :csv
-  #     end
-  #     parameter do
-  #       key :name, :limit
-  #       key :in, :query
-  #       key :description, 'maximum number of results to return'
-  #       key :required, false
-  #       key :type, :integer
-  #       key :format, :int32
-  #     end
-  #     response 200 do
-  #       key :description, 'comment response'
-  #       schema do
-  #         key :type, :array
-  #         items do
-  #           key :'$ref', :Pet
-  #         end
-  #       end
-  #     end
-  #     response :default do
-  #       key :description, 'unexpected error'
-  #       schema do
-  #         key :'$ref', :ErrorModel
-  #       end
-  #     end
-  #   end
-  # end
-  #
-
   swagger_controller :comments, 'Comments'
 
   swagger_api :index do
@@ -71,10 +20,10 @@ class CommentsController < ApplicationController
   swagger_api :create do
     summary 'Create the comment'
     notes 'Create a comment'
-    param :form, :username, :string, :required, 'Username of the comment'
-    param :form, :email, :string, :required, 'Email of the comment'
-    param :form, :content, :text, :required, 'Content of the comment'
-    param :form, :created_at, :datatime, :required, 'Creation date of the comment'
+    param :form, "comment[username]", :string, :required, 'Username of the comment'
+    param :form, "comment[email]", :string, :required, 'Email of the comment'
+    param :form, "comment[content]", :text, :required, 'Content of the comment'
+    param :form, "comment[created_at]", :datatime, :required, 'Creation date of the comment'
     response :not_acceptable
     response :unprocessable_entity
   end
@@ -83,9 +32,9 @@ class CommentsController < ApplicationController
     summary 'Update the comment'
     notes 'Update a comment'
     param :path, :id, :integer, :required, 'Id of the comment to update'
-    param :form, :username, :string, :optional, 'Username of the comment'
-    param :form, :email, :string, :optional, 'Email of the comment'
-    param :form, :content, :text, :optional, 'Content of the comment'
+    param :form, "comment[username]", :string, :optional, 'Username of the comment'
+    param :form, "comment[email]", :string, :optional, 'Email of the comment'
+    param :form, "comment[content]", :text, :optional, 'Content of the comment'
     response :not_found
     response :not_acceptable
     response :unprocessable_entity

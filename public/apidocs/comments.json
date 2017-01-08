@@ -43,28 +43,28 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "username",
+              "name": "comment[username]",
               "type": "string",
               "description": "Username of the comment",
               "required": true
             },
             {
               "paramType": "form",
-              "name": "email",
+              "name": "comment[email]",
               "type": "string",
               "description": "Email of the comment",
               "required": true
             },
             {
               "paramType": "form",
-              "name": "content",
+              "name": "comment[content]",
               "type": "text",
               "description": "Content of the comment",
               "required": true
             },
             {
               "paramType": "form",
-              "name": "created_at",
+              "name": "comment[created_at]",
               "type": "datatime",
               "description": "Creation date of the comment",
               "required": true
@@ -140,21 +140,21 @@
             },
             {
               "paramType": "form",
-              "name": "username",
+              "name": "comment[username]",
               "type": "string",
               "description": "Username of the comment",
               "required": false
             },
             {
               "paramType": "form",
-              "name": "email",
+              "name": "comment[email]",
               "type": "string",
               "description": "Email of the comment",
               "required": false
             },
             {
               "paramType": "form",
-              "name": "content",
+              "name": "comment[content]",
               "type": "text",
               "description": "Content of the comment",
               "required": false
