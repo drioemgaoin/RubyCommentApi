@@ -33,16 +33,41 @@
               "code": 406,
               "responseModel": null,
               "message": "Not Acceptable"
+            },
+            {
+              "code": 422,
+              "responseModel": null,
+              "message": "Unprocessable Entity"
             }
           ],
           "parameters": [
             {
-              "paramType": "body",
-              "name": "comment",
+              "paramType": "form",
+              "name": "username",
               "type": "string",
-              "description": "",
-              "required": true,
-              "username": ""
+              "description": "Username of the comment",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "email",
+              "type": "string",
+              "description": "Email of the comment",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "content",
+              "type": "text",
+              "description": "Content of the comment",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "created_at",
+              "type": "datatime",
+              "description": "Creation date of the comment",
+              "required": true
             }
           ],
           "nickname": "Comments#create",
@@ -57,6 +82,11 @@
           "summary": "Returns the comment",
           "notes": "Show the comment",
           "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
             {
               "code": 406,
               "responseModel": null,
@@ -85,9 +115,19 @@
           "notes": "Update a comment",
           "responseMessages": [
             {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
               "code": 406,
               "responseModel": null,
               "message": "Not Acceptable"
+            },
+            {
+              "code": 422,
+              "responseModel": null,
+              "message": "Unprocessable Entity"
             }
           ],
           "parameters": [
@@ -99,12 +139,25 @@
               "required": true
             },
             {
-              "paramType": "body",
-              "name": "comment",
+              "paramType": "form",
+              "name": "username",
               "type": "string",
-              "description": "",
-              "required": true,
-              "username": ""
+              "description": "Username of the comment",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "email",
+              "type": "string",
+              "description": "Email of the comment",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "content",
+              "type": "text",
+              "description": "Content of the comment",
+              "required": false
             }
           ],
           "nickname": "Comments#update",
@@ -120,9 +173,9 @@
           "notes": "Delete a comment",
           "responseMessages": [
             {
-              "code": 406,
+              "code": 404,
               "responseModel": null,
-              "message": "Not Acceptable"
+              "message": "Not Found"
             }
           ],
           "parameters": [
