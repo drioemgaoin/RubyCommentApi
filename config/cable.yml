@@ -6,4 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: <=% ENV['REDIS_ENDPOINT'] %>
+  url: <%= ENV["REDIS_ENDPOINT"] %>
