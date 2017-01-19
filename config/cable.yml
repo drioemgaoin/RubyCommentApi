@@ -1,6 +1,5 @@
 development:
-  adapter: redis
-  url: redis://redis-18181.c10.us-east-1-2.ec2.cloud.redislabs.com:18181/
+  adapter: async
 
 test:
   adapter: async
