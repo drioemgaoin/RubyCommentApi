@@ -49,9 +49,17 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    @comments = Comment.all
+    comments = Comment.all
+    users = User.all
 
-    render json: @comments
+    comments.each do |comment|
+      user = users.detect { |user| user.email == comment.email }
+      if user
+        comment.username = "#{user.first_name} #{user.last_name}"
+      end
+    end
+
+    render json: comments
   end
 
   # GET /comments/1
