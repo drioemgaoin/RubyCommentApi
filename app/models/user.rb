@@ -1,4 +1,4 @@
 class User < ActiveResource::Base
-  self.site = "http://localhost:4000/"
+  self.site = ENV['AUTHENTICATION_API']
   self.format = ::JsonFormatter.new(:users)
 end
