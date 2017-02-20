@@ -20,8 +20,7 @@ class CommentsController < ApplicationController
   swagger_api :create do
     summary 'Create the comment'
     notes 'Create a comment'
-    param :form, "comment[username]", :string, :required, 'Username of the comment'
-    param :form, "comment[email]", :string, :required, 'Email of the comment'
+    param :form, "comment[user_id]", :string, 'Id of the user'
     param :form, "comment[content]", :text, :required, 'Content of the comment'
     param :form, "comment[created_at]", :datatime, :required, 'Creation date of the comment'
     response :not_acceptable
@@ -49,7 +48,8 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    comments = CommentService.new.get_all
+    #comments = CommentService.new.get_all
+    comments = Comment.all
     render json: comments
   end
 
@@ -92,6 +92,6 @@ class CommentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def comment_params
-      params.require(:comment).permit(:username, :email, :content, :created_at)
+      params.require(:comment).permit(:user_id, :content, :created_at)
     end
 end

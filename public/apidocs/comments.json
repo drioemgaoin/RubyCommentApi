@@ -43,17 +43,10 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "comment[username]",
+              "name": "comment[user_id]",
               "type": "string",
-              "description": "Username of the comment",
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "comment[email]",
-              "type": "string",
-              "description": "Email of the comment",
-              "required": true
+              "description": null,
+              "required": false
             },
             {
               "paramType": "form",
