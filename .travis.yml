@@ -1,9 +1,12 @@
 language: ruby
 rvm:
-  - 2.2.2
+- 2.2.2
 sudo: false
 script:
-  - export RAILS_ENV=test
-  - bundle exec rake --trace db:migrate test
+- export RAILS_ENV=test
+- bundle exec rake --trace db:migrate test
 notifications:
   email: false
+env:
+  global:
+    secure: AOOXSzoTeDvhvmavH1086FbWzODWs65F/r8l57LLnJeXnBdF2WSZk1ze6mQ+Vp7Z8pioUZbCXKjV2G+86BWLGCMDRa+hAJ9IS+6dCIk8QMpNADSKZVSGIRykSPU+3legteLD0QithroZrbgH2IMwagNBKxHjLHW2KBpxPrwdJXaQt/Y35M8GwFAScmuklK6Y3hEjVINDPXufYoykJnIoPyP7e6oASdpJXMcoIJFsLoufj1qJv9RshlVL1tU0wpmuA7470z6ucaLCR/uldvtI29igzFDOfIUR3gexzFpOMjdX7CldK5fA/K3ZvhbNrZNLBV9XkI6nkdpDWODMLeNJnxgpWcEVMyKRw7MJk4fdbq0Aw88aYDmdT+Omkqf0/XLnOgSR+V51liDp2tHaMNaJd+t+Ke/hqhCAV1eCqK9D/lhl8MTJ/s9vtv+qTq+ODLLMJXxtLz7b8ehqJp+8ZFg+ZzqobTXXi4ZtF5eBbYIhin+nHIHQWSjmo15RNfwkG9/qcrGaakgQPov+LqkJlAmJz38n41qR8pZrXYQfCkg+ini0zAldu1xQY6E6M75V9/sx82vKG7XOd78vuuau2MOP0ygolnoLW2kalo3uqriIypC9kpVQgvvaOPKiiuE7w9E4b+KvKR4DNCSeN7ySUnXYjRJzucjgk7r0q9YPje/yOCc=
