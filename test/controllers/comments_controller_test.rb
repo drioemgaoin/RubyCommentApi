@@ -13,7 +13,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     }.to_json
 
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.get '/users.json', { "Accept"=>"application/json" }, @users
+      mock.get '/user.json', { "Accept"=>"application/json" }, @users
     end
 
     @comment = comments(:one)
