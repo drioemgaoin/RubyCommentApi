@@ -8,6 +8,7 @@ class JsonFormatter
   end
 
   def decode(json)
+    puts json
     remove_root(ActiveSupport::JSON.decode(json))
   end
 
