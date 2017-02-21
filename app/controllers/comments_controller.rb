@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    comments = Comment.all
+    comments = Comment.aggregate
     render json: comments
   end
 
