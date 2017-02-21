@@ -48,7 +48,6 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    #comments = CommentService.new.get_all
     comments = Comment.all
     render json: comments
   end

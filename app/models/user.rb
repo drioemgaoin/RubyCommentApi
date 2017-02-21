@@ -8,8 +8,4 @@ class User < ActiveResource::Base
   def self.collection_name
     element_name
   end
-
-  def comments
-    Comment.where(user_id: self.id)
-  end
 end
