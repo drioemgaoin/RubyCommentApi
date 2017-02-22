@@ -1,21 +1,15 @@
 class Comment < ApplicationRecord
-  belongs_to :user, polymorphic: true, optional: true
+  after_commit :set_user_infos, on: [:create, :update]
+  after_find :set_user_infos, on: [:all, :find]
 
   attr_accessor :username, :avatar
 
-  def self.aggregate
-    comments = Comment.all
-    users = User.all
-
-    comments.each do |comment|
-      user = users.detect { |user| user.id == comment.user_id }
-      if user
-        comment.avatar = user.avatar
-        comment.username = "#{user.first_name} #{user.last_name}"
-      end
+  def set_user_infos
+    user = User.all.detect { |user| user.id == self.user_id }
+    if user
+      self.avatar = user.avatar
+      self.username = "#{user.first_name} #{user.last_name}"
     end
-
-    comments
   end
 
   def as_json(options={})

@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
   end
 
   def index
-    comments = Comment.aggregate
+    comments = Comment.all
     render json: comments
   end
 
@@ -56,18 +56,21 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    comment = Comment.create comment_params
 
-    if @comment.save
+    if comment.persisted?
       ActionCable.server.broadcast "comment_channel", comment: @comment
-      render json: @comment, status: :created, location: @comment
+      render json: comment, status: :created, location: @comment
     else
-      render json: @comment.errors, status: :unprocessable_entity
+      render json: comment.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if @comment.update(comment_params)
+    @comment.update(comment_params)
+
+    if @comment.persisted?
+      ActionCable.server.broadcast "comment_channel", comment: @comment
       render json: @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
@@ -76,6 +79,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    
+    if @comment.destroyed?
+      ActionCable.server.broadcast "comment_channel", comment: nil
+    end
   end
 
   private

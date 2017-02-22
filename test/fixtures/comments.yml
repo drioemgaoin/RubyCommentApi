@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: ""
-  email: "john.doe@domain.com"
+  user_id: 1
   content: "Comment 1"
   created_at: 2017-01-07 17:38:36
 
 two:
-  username: "Anonymous User"
-  email: "anonymous.user@domain.com"
+  user_id: 2
   content: "Comment 2"
   created_at: 2017-01-07 17:38:36
