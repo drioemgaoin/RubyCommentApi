@@ -133,20 +133,6 @@
             },
             {
               "paramType": "form",
-              "name": "comment[username]",
-              "type": "string",
-              "description": "Username of the comment",
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "comment[email]",
-              "type": "string",
-              "description": "Email of the comment",
-              "required": false
-            },
-            {
-              "paramType": "form",
               "name": "comment[content]",
               "type": "string",
               "description": "Content of the comment",

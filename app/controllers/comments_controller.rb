@@ -31,8 +31,6 @@ class CommentsController < ApplicationController
     summary 'Update the comment'
     notes 'Update a comment'
     param :path, :id, :integer, :required, 'Id of the comment to update'
-    param :form, "comment[username]", :string, :optional, 'Username of the comment'
-    param :form, "comment[email]", :string, :optional, 'Email of the comment'
     param :form, "comment[content]", :string, :optional, 'Content of the comment'
     response :not_found
     response :not_acceptable
@@ -56,22 +54,22 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.create comment_params
+    comment = Comment.create create_params
 
     if comment.persisted?
       ActionCable.server.broadcast "comment_channel", comment: @comment
-      render json: comment, status: :created, location: @comment
+      render json: { message: I18n.t("comment.created") }
     else
       render json: comment.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    @comment.update(comment_params)
+    @comment.update update_params
 
     if @comment.persisted?
       ActionCable.server.broadcast "comment_channel", comment: @comment
-      render json: @comment
+      render json: { message: I18n.t("comment.updated") }
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -79,9 +77,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    
+
     if @comment.destroyed?
       ActionCable.server.broadcast "comment_channel", comment: nil
+      render json: { message: I18n.t("comment.deleted") }
     end
   end
 
@@ -91,8 +90,11 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def comment_params
+    def create_params
       params.require(:comment).permit(:user_id, :content, :created_at)
+    end
+
+    def update_params
+      params.require(:comment).permit(:user_id, :content)
     end
 end
