@@ -44,21 +44,21 @@
             {
               "paramType": "form",
               "name": "comment[user_id]",
-              "type": "string",
-              "description": null,
+              "type": "integer",
+              "description": "Id of the user",
               "required": false
             },
             {
               "paramType": "form",
               "name": "comment[content]",
-              "type": "text",
+              "type": "string",
               "description": "Content of the comment",
               "required": true
             },
             {
               "paramType": "form",
               "name": "comment[created_at]",
-              "type": "datatime",
+              "type": "string",
               "description": "Creation date of the comment",
               "required": true
             }
@@ -148,7 +148,7 @@
             {
               "paramType": "form",
               "name": "comment[content]",
-              "type": "text",
+              "type": "string",
               "description": "Content of the comment",
               "required": false
             }

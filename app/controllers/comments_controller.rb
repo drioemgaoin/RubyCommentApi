@@ -20,9 +20,9 @@ class CommentsController < ApplicationController
   swagger_api :create do
     summary 'Create the comment'
     notes 'Create a comment'
-    param :form, "comment[user_id]", :string, 'Id of the user'
-    param :form, "comment[content]", :text, :required, 'Content of the comment'
-    param :form, "comment[created_at]", :datatime, :required, 'Creation date of the comment'
+    param :form, "comment[user_id]", :integer, :optional, 'Id of the user'
+    param :form, "comment[content]", :string, :required, 'Content of the comment'
+    param :form, "comment[created_at]", :string, :required, 'Creation date of the comment'
     response :not_acceptable
     response :unprocessable_entity
   end
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     param :path, :id, :integer, :required, 'Id of the comment to update'
     param :form, "comment[username]", :string, :optional, 'Username of the comment'
     param :form, "comment[email]", :string, :optional, 'Email of the comment'
-    param :form, "comment[content]", :text, :optional, 'Content of the comment'
+    param :form, "comment[content]", :string, :optional, 'Content of the comment'
     response :not_found
     response :not_acceptable
     response :unprocessable_entity
@@ -46,18 +46,15 @@ class CommentsController < ApplicationController
     response :not_found
   end
 
-  # GET /comments
   def index
     comments = Comment.aggregate
     render json: comments
   end
 
-  # GET /comments/1
   def show
     render json: @comment
   end
 
-  # POST /comments
   def create
     @comment = Comment.new(comment_params)
 
@@ -69,7 +66,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
       render json: @comment
@@ -78,7 +74,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
   def destroy
     @comment.destroy
   end

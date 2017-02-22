@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  belongs_to :user, polymorphic: true
+  belongs_to :user, polymorphic: true, optional: true
 
   attr_accessor :username, :avatar
 
