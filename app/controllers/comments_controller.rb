@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
     summary 'Create the comment'
     notes 'Create a comment'
     param :form, "comment[user_id]", :integer, :optional, 'Id of the user'
+    param :form, "comment[username]", :string, :optional, 'Name of the user'
     param :form, "comment[content]", :string, :required, 'Content of the comment'
     param :form, "comment[created_at]", :string, :required, 'Creation date of the comment'
     response :not_acceptable
@@ -31,6 +32,7 @@ class CommentsController < ApplicationController
     summary 'Update the comment'
     notes 'Update a comment'
     param :path, :id, :integer, :required, 'Id of the comment to update'
+    param :form, "comment[username]", :string, :optional, 'Name of the user'
     param :form, "comment[content]", :string, :optional, 'Content of the comment'
     response :not_found
     response :not_acceptable
@@ -57,7 +59,7 @@ class CommentsController < ApplicationController
     comment = Comment.create create_params
 
     if comment.persisted?
-      ActionCable.server.broadcast "comment_channel", comment: @comment
+      ActionCable.server.broadcast "comment_channel", comment: comment
       render json: { message: I18n.t("comment.created") }
     else
       render json: comment.errors, status: :unprocessable_entity
@@ -91,10 +93,10 @@ class CommentsController < ApplicationController
     end
 
     def create_params
-      params.require(:comment).permit(:user_id, :content, :created_at)
+      params.require(:comment).permit(:user_id, :username, :content, :created_at)
     end
 
     def update_params
-      params.require(:comment).permit(:user_id, :content)
+      params.require(:comment).permit(:user_id, :username, :content)
     end
 end

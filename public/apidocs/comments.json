@@ -50,6 +50,13 @@
             },
             {
               "paramType": "form",
+              "name": "comment[username]",
+              "type": "string",
+              "description": "Name of the user",
+              "required": false
+            },
+            {
+              "paramType": "form",
               "name": "comment[content]",
               "type": "string",
               "description": "Content of the comment",
@@ -130,6 +137,13 @@
               "type": "integer",
               "description": "Id of the comment to update",
               "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "comment[username]",
+              "type": "string",
+              "description": "Name of the user",
+              "required": false
             },
             {
               "paramType": "form",
