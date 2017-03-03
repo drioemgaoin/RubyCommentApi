@@ -4,6 +4,7 @@ require 'active_resource/http_mock'
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @users = [{
+        :id => 1,
         :avatar => "avatar-url",
         :email => "john.doe@domain.com",
         :first_name => "John",
@@ -27,7 +28,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       post comments_url, params: get_params, as: :json
     end
 
-    assert_response 201
+    assert_response 200
   end
 
   test "should show comment" do
@@ -45,7 +46,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       delete comment_url(@comment), as: :json
     end
 
-    assert_response 204
+    assert_response 200
   end
 
   private
