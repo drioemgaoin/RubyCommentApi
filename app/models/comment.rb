@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   after_commit :set_user_infos, on: [:create, :update]
   after_find :set_user_infos, on: [:all, :find]
 
-  attr_accessor :username, :avatar
+  attr_accessor :avatar
 
   def set_user_infos
     user = User.all.detect { |user| user.id == self.user_id }
