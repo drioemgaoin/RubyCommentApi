@@ -24,4 +24,4 @@
 /config/application.yml
 
 ## Ignore Swagger JSON files.
-/public/apidocs/
+/public/apidocs/*
