@@ -5,10 +5,12 @@ class Comment < ApplicationRecord
   attr_accessor :avatar
 
   def set_user_infos
-    user = User.all.detect { |user| user.id == self.user_id }
-    if user
-      self.avatar = user.avatar
-      self.username = "#{user.first_name} #{user.last_name}"
+    if self.user_id
+      user = User.find self.user_id
+      if user
+        self.avatar = user.avatar
+        self.username = "#{user.first_name} #{user.last_name}"
+      end
     end
   end
 
