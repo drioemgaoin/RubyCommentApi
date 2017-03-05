@@ -59,7 +59,7 @@ class CommentsController < ApplicationController
     comment = Comment.create create_params
 
     if comment.persisted?
-      ActionCable.server.broadcast "comment_channel", comment: comment
+      ActionCable.server.broadcast "comment_channel", { comment: comment, action: "add" }
       render json: { message: I18n.t("comment.created") }
     else
       render json: comment.errors, status: :unprocessable_entity
@@ -70,7 +70,7 @@ class CommentsController < ApplicationController
     @comment.update update_params
 
     if @comment.persisted?
-      ActionCable.server.broadcast "comment_channel", comment: @comment
+      ActionCable.server.broadcast "comment_channel", { comment: @comment, action: "update" }
       render json: { message: I18n.t("comment.updated") }
     else
       render json: @comment.errors, status: :unprocessable_entity
@@ -81,7 +81,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     if @comment.destroyed?
-      ActionCable.server.broadcast "comment_channel", comment: nil
+      ActionCable.server.broadcast "comment_channel", { comment: @comment, action: "delete" }
       render json: { message: I18n.t("comment.deleted") }
     end
   end
