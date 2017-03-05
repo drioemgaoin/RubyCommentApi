@@ -3,16 +3,16 @@ require 'active_resource/http_mock'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @users = [{
+    @user = {
         :id => 1,
         :avatar => "avatar-url",
         :email => "john.doe@domain.com",
         :first_name => "John",
         :last_name => "Doe"
-      }].to_json
+      }.to_json
 
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.get '/user.json', { "Accept"=>"application/json" }, @users
+      mock.get '/user/1.json', { "Accept"=>"application/json" }, @user
     end
 
     @comment = comments(:one)
